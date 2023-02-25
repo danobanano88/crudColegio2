@@ -5,21 +5,39 @@
     <mat-label>ID</mat-label>
     <input matInput [(ngModel)]="data.id" value= [data.id] disabled="true">
   </mat-form-field>
+
+  <div *ngIf = isProfesor>
   <p>Nombre</p>
   <mat-form-field appearance="fill">
     <mat-label>Nombre</mat-label>
     <input matInput [(ngModel)]="data.name" value= [data.name]>
   </mat-form-field>
+</div>
+
+<div *ngIf = isGrado>
+  <p>Nombre</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="data.name" value= [data.name]>
+  </mat-form-field>
+</div>
+
+  <div *ngIf = isProfesor>
   <p>Apellidos</p>
   <mat-form-field appearance="fill">
     <mat-label>Apellidos</mat-label>
     <input matInput [(ngModel)]="data.lastname">
   </mat-form-field>
+</div>
+
+  <div  *ngIf = isProfesor> 
   <p>Genero</p>
   <mat-form-field appearance="fill">
     <mat-label>Genero</mat-label>
     <input matInput [(ngModel)]="data.genre">
   </mat-form-field>
+</div>
+
   <div *ngIf="data.dob">
     <p>Fecha de nacimiento</p>
   <mat-form-field appearance="fill">
@@ -27,6 +45,41 @@
     <input matInput [(ngModel)]="data.dob">
   </mat-form-field>
 </div>
+
+<div *ngIf = isGrado>
+  <p>ID Profesor</p>
+  <mat-form-field appearance="fill">
+    <mat-label>ID Profesor</mat-label>
+    <input matInput [(ngModel)]="data.idProfesor">
+  </mat-form-field>
+</div>   
+
+<div *ngIf = isGradoAlumno>
+  <p>ID Alumno</p>
+  <mat-form-field appearance="fill">
+    <mat-label>ID Alumno</mat-label>
+    <input matInput [(ngModel)]="data.idAlumno">
+  </mat-form-field>
+</div>   
+
+<div *ngIf = isGradoAlumno>
+  <p>ID Grado</p>
+  <mat-form-field appearance="fill">
+    <mat-label>ID Grado</mat-label>
+    <input matInput [(ngModel)]="data.idGrado">
+  </mat-form-field>
+</div>  
+
+
+<div *ngIf = isGradoAlumno>
+  <p>Seccion</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Seccion</mat-label>
+    <input matInput [(ngModel)]="data.seccion">
+  </mat-form-field>
+</div>  
+
+
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancelar</button>

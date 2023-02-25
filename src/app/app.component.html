@@ -66,11 +66,13 @@
     </div>
 
   </mat-tab>
+
+
   <mat-tab label="Profesor"> 
 <div class="center" fxLayout="row" fxLayoutAlign="center center">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Alumnos</mat-card-title>
+          <mat-card-title>Profesores</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <table mat-table [dataSource]="dataSourceProfesor" class="mat-elevation-z8">
@@ -134,6 +136,58 @@
 
   <mat-tab label="Grado"> 
 
+<div class="center" fxLayout="row" fxLayoutAlign="center center">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Grados</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <table mat-table [dataSource]="dataSourceGrado" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID. </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+
+            <ng-container matColumnDef="idProfesor">
+              <th mat-header-cell *matHeaderCellDef> ID Profesor </th>
+              <td mat-cell *matCellDef="let element"> {{element.idProfesor}} </td>
+            </ng-container>
+
+            <!-- add a delete button -->
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="delete3(element.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+                <!-- editar -->
+                <button mat-icon-button (click)="openDialog3(element.id)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsGrado"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsGrado;"></tr>
+
+          </table>
+        </mat-card-content>
+        <mat-card-actions align="start">
+          <button mat-raised-button (click)="openDialog3()">Agregar</button>
+          
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
 
 
   </mat-tab>
@@ -141,7 +195,67 @@
 
 
 
-    
+<div class="center" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Alumno-Grado</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="dataSourceAlumnoGrado" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID. </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="idAlumno">
+          <th mat-header-cell *matHeaderCellDef> ID Alumno </th>
+          <td mat-cell *matCellDef="let element"> {{element.idAlumno}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+
+        <ng-container matColumnDef="idGrado">
+          <th mat-header-cell *matHeaderCellDef> ID Grado </th>
+          <td mat-cell *matCellDef="let element"> {{element.idGrado}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="seccion">
+          <th mat-header-cell *matHeaderCellDef> Seccion </th>
+          <td mat-cell *matCellDef="let element"> {{element.seccion}} </td>
+        </ng-container>
+
+
+        <!-- add a delete button -->
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="delete4(element.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <!-- editar -->
+            <button mat-icon-button (click)="openDialog4(element.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsAlumnoGrado"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsAlumnoGrado;"></tr>
+
+      </table>
+    </mat-card-content>
+    <mat-card-actions align="start">
+      <button mat-raised-button (click)="openDialog4()">Agregar</button>
+      
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+
+
+
   </mat-tab>
 </mat-tab-group>
 <router-outlet></router-outlet>

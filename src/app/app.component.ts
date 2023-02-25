@@ -69,6 +69,9 @@ let ELEMENT_DATA_ALUMNO_GRADO: AlumnoGrado[] = [
 export class AppComponent implements OnInit {
   
   idCounter = 4;
+  idCounterProfesor = 4;
+  idCounterGrado = 4;
+  idCounterAlumnoGrado = 4;
 
   ngOnInit(): void {
     
@@ -77,8 +80,13 @@ export class AppComponent implements OnInit {
   title = 'crudColegio';
   displayedColumns: string[] = ['id', 'name', 'lastname', 'genre' , 'dob', 'delete'];
   displayedColumnsProfesor: string[] = ['id', 'name', 'lastname', 'genre', 'delete'];
+  displayedColumnsGrado: string[] = ['id', 'name', 'idProfesor', 'delete'];
+  displayedColumnsAlumnoGrado: string[] = ['id', 'idAlumno', 'idGrado', 'seccion', 'delete'];
+
   dataSource = ELEMENT_DATA;
   dataSourceProfesor = ELEMENT_DATA_PROFESOR;
+  dataSourceGrado = ELEMENT_DATA_GRADO;
+  dataSourceAlumnoGrado = ELEMENT_DATA_ALUMNO_GRADO;
 
   constructor(public dialog: MatDialog) {}
 
@@ -133,6 +141,7 @@ export class AppComponent implements OnInit {
     this.dataSource[value.id-1] = value;
   }
 
+  //& Seccion Profesor
 
   openDialog2(id?:number): void {
     if (id) {
@@ -152,13 +161,13 @@ export class AppComponent implements OnInit {
     } else {
     const dialogRef = this.dialog.open(AddAlumnoComponent, {
       width: '250px',
-      data: {id: this.idCounter+1 , name: "" ,lastname: "", genre: ""}
+      data: {id: this.idCounterProfesor+1 , name: "" ,lastname: "", genre: ""}
     });
 
     dialogRef.afterClosed().subscribe(result => {
     
       this.addValue2(result);
-      this.idCounter++;
+      this.idCounterProfesor++;
       this.delete2(result.id+1);
     });
   }
@@ -180,6 +189,103 @@ export class AppComponent implements OnInit {
   updateValue2(value: Alumno) {
     this.dataSourceProfesor[value.id-1] = value;
   }
+
+  //& Seccion Grado
+
+
+  openDialog3(id?:number): void {
+    if (id) {
+      let name = this.dataSourceGrado[id-1].name;
+      let idProfesor = this.dataSourceGrado[id-1].idProfesor;
+
+      const dialogRef = this.dialog.open(AddAlumnoComponent, {
+        width: '250px',
+        data: {id: id , name: name ,idProfesor: idProfesor}
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        this.updateValue3(result);
+        this.delete3(result.id+11);
+      });
+    } else {
+    const dialogRef = this.dialog.open(AddAlumnoComponent, {
+      width: '250px',
+      data: {id: this.idCounterGrado+1 , name: "" ,idProfesor: ""}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    
+      this.addValue3(result);
+      this.idCounterGrado++;
+      this.delete3(result.id+1);
+    });
+  }
+  }
+
+  delete3(id: number) {
+    this.dataSourceGrado = this.dataSourceGrado.filter((value,key)=>{
+      return value.id != id;
+    });
+    
+  }
+  
+  addValue3(value: grado) {
+    this.dataSourceGrado.push(value);
+    
+  }
+
+  updateValue3(value: grado) {
+    this.dataSourceGrado[value.id-1] = value;
+  }
+
+  //& Seccion AlumnoGrado
+
+  openDialog4(id?:number): void {
+    if (id) {
+      let idAlumno = this.dataSourceAlumnoGrado[id-1].idAlumno;
+      let idGrado = this.dataSourceAlumnoGrado[id-1].idGrado;
+      let seccion = this.dataSourceAlumnoGrado[id-1].seccion;
+
+      const dialogRef = this.dialog.open(AddAlumnoComponent, {
+        width: '250px',
+        data: {id: id , idAlumno: idAlumno ,idGrado: idGrado, seccion: seccion}
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        this.updateValue4(result);
+        this.delete4(result.id+11);
+      });
+    } else {
+    const dialogRef = this.dialog.open(AddAlumnoComponent, {
+      width: '250px',
+      data: {id: this.idCounterAlumnoGrado+1 , idAlumno: "" ,idGrado: "", seccion: ""}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    
+      this.addValue4(result);
+      this.idCounterAlumnoGrado++;
+      this.delete4(result.id+1);
+    });
+  }
+  }
+
+  delete4(id: number) {
+    this.dataSourceAlumnoGrado = this.dataSourceAlumnoGrado.filter((value,key)=>{
+      return value.id != id;
+    });
+    
+  }
+
+  addValue4(value: AlumnoGrado) {
+    this.dataSourceAlumnoGrado.push(value);
+    
+  }
+
+  updateValue4(value: AlumnoGrado) {
+    this.dataSourceAlumnoGrado[value.id-1] = value;
+  }
+
 
 
 
