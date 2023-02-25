@@ -7,27 +7,55 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     MatSlideToggleModule,
     MatTabsModule,
     MatCardModule,
+    MatFormFieldModule,
     MatTableModule,
     MatIconModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule,
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    BrowserAnimationsModule
+  ],
+  exports: [
+    MatSlideToggleModule,
+    MatTabsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatIconModule,
+    MatDatepickerModule,
+    FormsModule,
+    MatInputModule,
+    MatDialogModule,
     MatButtonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
