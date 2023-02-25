@@ -9,6 +9,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 
@@ -34,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatDatepickerModule,
     MatInputModule,
     MatDialogModule,
+    MatNativeDateModule,
     MatButtonModule,
     BrowserModule,
     FormsModule,
@@ -47,6 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatFormFieldModule,
     MatTableModule,
     MatIconModule,
+    MatNativeDateModule,
     MatDatepickerModule,
     FormsModule,
     MatInputModule,
