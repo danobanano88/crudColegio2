@@ -22,6 +22,7 @@ export interface grado{
   name: string;
   id: number;
   idProfesor: number;
+  fullNameP?: string;
 }
 
 export interface AlumnoGrado{
@@ -68,17 +69,22 @@ let ELEMENT_DATA_ALUMNO_GRADO: AlumnoGrado[] = [
 })
 export class AppComponent implements OnInit {
   
+  fullNameP= "";
   idCounter = 4;
   idCounterProfesor = 4;
   idCounterGrado = 4;
   idCounterAlumnoGrado = 4;
 
   ngOnInit(): void {
-    
+    for (let i = 0; i < this.dataSourceGrado.length; i++) {
+      this.matchProfesor(this.dataSourceGrado[i].idProfesor);
+    }
+    // this.matchProfesor(1);
   }
  
+
   title = 'crudColegio';
-  displayedColumns: string[] = ['id', 'name', 'lastname', 'genre' , 'dob', 'delete'];
+  displayedColumns: string[] = ['id','fullname', 'genre' , 'dob', 'delete'];
   displayedColumnsProfesor: string[] = ['id', 'name', 'lastname', 'genre', 'delete'];
   displayedColumnsGrado: string[] = ['id', 'name', 'idProfesor', 'delete'];
   displayedColumnsAlumnoGrado: string[] = ['id', 'idAlumno', 'idGrado', 'seccion', 'delete'];
@@ -91,6 +97,28 @@ export class AppComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
  
+  matchProfesor(id : number){
+
+    this.dataSourceGrado.forEach(element => {
+      if (element.idProfesor == id){
+        console.log(element.name);
+        //push name to array
+        return true;
+      } else {
+        return false;
+      }
+    });
+    let name = this.dataSourceProfesor[id-1].name;
+    let lastname = this.dataSourceProfesor[id-1].lastname;
+    this.fullNameP = name + " " + lastname;
+    console.log(this.fullNameP);
+    for (let i = 0; i < this.dataSourceGrado.length; i++) {
+      if (this.dataSourceGrado[i].idProfesor == id){
+        this.dataSourceGrado[i].fullNameP = this.fullNameP;
+      }
+    }
+    return this.fullNameP;
+  }
  
 
   openDialog(id?:number): void {

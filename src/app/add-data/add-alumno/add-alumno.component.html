@@ -30,13 +30,44 @@
   </mat-form-field>
 </div>
 
+
+
   <div  *ngIf = isProfesor> 
   <p>Genero</p>
-  <mat-form-field appearance="fill">
+
+
+  <!-- <mat-form-field appearance="fill">
     <mat-label>Genero</mat-label>
     <input matInput [(ngModel)]="data.genre">
+  </mat-form-field> -->
+
+
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Genero</mat-label>
+    <mat-select>
+      <mat-option [(ngModel)]="data.genre" *ngFor="let food of foods" [value]="food.value" >
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Select an option</mat-label>
+    <mat-select [(ngModel)]="data.genre" [(value)]="selected">
+      <mat-option>None</mat-option>
+      <mat-option value="F">Femenino</mat-option>
+      <mat-option value="M">Masculino</mat-option>
+    </mat-select>
   </mat-form-field>
+  
+  <p>You selected: {{selected}}</p>
+
+
 </div>
+
+
+
 
   <div *ngIf="data.dob">
     <p>Fecha de nacimiento</p>
@@ -88,7 +119,8 @@
 
 </div>
 <div mat-dialog-actions>
+  <button mat-button (click)="checkLetters(data.name,data.lastname)">Revisar</button>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button *ngIf="isOk == true" mat-button [mat-dialog-close]="data" cdkFocusInitial >Ok</button>
 </div>
 
